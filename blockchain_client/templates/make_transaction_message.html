@@ -32,13 +32,14 @@
             <a class="nav-link" href="/">Wallet Generator
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/make/transaction/message">Send Message</a>
-          </li>
           <li class="nav-item active">
-            <a class="nav-link" href="/make/transaction">Send Currency</a>
+            <a class="nav-link" href="/make/transaction/message">Send Message</a>
             <span class="sr-only">(current)</span>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/make/transaction">Send Currency</a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="/view/transactions">View Transactions</a>
           </li>
@@ -53,7 +54,7 @@
       <div class="col-lg-12">
 
         <div class="card-body">
-          <h4 class="card-title">Send Currency</h4>
+          <h4 class="card-title">Send Message</h4>
           <p class="card-text">Enter transaction details and click on "Generate Transaction" button to generate your
             transaction</p>
         </div>
@@ -117,7 +118,7 @@
   </div> -->
 
 
-  <div class="container alert alert-warning">
+  <div class="container alert alert-secondary">
     <form id="transaction_form">
 
       <div class="row">
@@ -140,27 +141,12 @@
       </div>
 
       <br>
-      <!-- Example single danger button -->
-      <div class="row">
-        <label class="col-sm-2">Currency Type:</label>
-        <div class="col-sm-10">
-          <div class="btn-group">
-            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false" id='dropdown-btn'>Gold</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Diamond</a>
-              <a class="dropdown-item" href="#">Gold</a>
-              <a class="dropdown-item" href="#">Coin</a>
 
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
       <div class="row">
-        <label class="col-sm-2">Amount to Send:</label>
+        <label class="col-sm-2">Message:</label>
         <div class="col-sm-10">
-          <input type="text" name="amount" id="amount" rows="2" class="form-control" placeholder='50'>
+          <input type="text" name="amount" id="amount" rows="2" class="form-control"
+            placeholder='Hi! How are you doing?'>
         </div>
       </div>
 
@@ -303,7 +289,7 @@
             </div>
 
             <div class="row">
-              <label class="col-sm-12">Amount to Send:</label>
+              <label class="col-sm-12">Message:</label>
               <div class="col-sm-12">
                 <input type="text" name="amount" id="confirmation_amount" rows="2" class="form-control" readonly>
               </div>
@@ -386,19 +372,36 @@
     <script>
 
       $(function () {
-        $(".dropdown-item").click(function (e) {
-          // console.log($(this).text());
-          $('#dropdown-btn').text($(this).text())
-        });
+        // $("#generate_transaction").click(function () {
+
+        //   $.ajax({
+        //     url: "/generate/transaction",
+        //     type: "POST",
+        //     dataType: 'json',
+        //     data: $('#transaction_form').serialize(),
+        //     success: function (response) {
+
+        //       document.getElementById("confirmation_sender_address").value = response["transaction"]["sender_address"];
+        //       document.getElementById("confirmation_recipient_address").value = response["transaction"]["recipient_address"];
+        //       document.getElementById("confirmation_amount").value = response["transaction"]["value"];
+        //       document.getElementById("transaction_signature").value = response["signature"];
+
+        //       $("#basicModal").modal('show');
+
+        //     },
+        //     error: function (error) {
+        //       console.log(error);
+        //     }
+        //   });
+
+        // });
         $("#generate_transaction_custom").click(function () {
-          console.log('page-1')
-          console.log($('#transaction_form').serialize());
-          var data = $('#transaction_form').serialize() + `&currency=${$('#dropdown-btn').text()}`;
+
           $.ajax({
-            url: "/generate/transaction/custom",
+            url: "/generate/transaction/message",
             type: "POST",
             dataType: 'json',
-            data: data,
+            data: $('#transaction_form').serialize(),
             success: function (response) {
 
               document.getElementById("confirmation_sender_address").value = response["transaction"]["sender_address"];
@@ -417,8 +420,8 @@
                 data: $('#confirmation_transaction_form').serialize(),
                 success: function (response) {
 
-                  // //reset both forms
-                  $("#transaction_form")[0].reset();
+                  //reset both forms
+                  // $("#transaction_form")[0].reset();
                   // $("#confirmation_transaction_form")[0].reset();
 
                   // //clean text boxes
@@ -479,6 +482,8 @@
 
         // });
         // $("#button_confirm_transaction").click(function () {
+        //   //console.log($('#confirmation_transaction_form').serialize());
+
 
         //   $.ajax({
         //     url: document.getElementById("node_url").value + "/transactions/new",

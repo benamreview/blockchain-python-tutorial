@@ -24,11 +24,11 @@ import Crypto.Random
 from Crypto.Hash import SHA
 from Crypto.PublicKey import RSA
 from Crypto.Signature import PKCS1_v1_5
-
+import json
 import requests
 from flask import Flask, jsonify, request, render_template
 
-key_storage = {}
+
 class Transaction:
 
     def __init__(self, sender_address, sender_private_key, recipient_address, value):
@@ -59,6 +59,7 @@ class Transaction:
 
 app = Flask(__name__)
 
+key_storage = {}
 @app.route('/')
 def index():
 	return render_template('./index.html')
@@ -67,6 +68,10 @@ def index():
 def make_transaction():
     return render_template('./make_transaction.html')
 
+@app.route('/make/transaction/message')
+def make_transaction_message():
+    return render_template('./make_transaction_message.html')
+
 @app.route('/view/transactions')
 def view_transaction():
     return render_template('./view_transactions.html')
@@ -74,7 +79,7 @@ def view_transaction():
 @app.route('/wallet/new', methods=['GET'])
 def new_wallet():
     name = request.args.get('name')
-    if name is None:
+    if name is "" or name is None:
         name = 'anonymous'
     random_gen = Crypto.Random.new().read
     private_key = RSA.generate(1024, random_gen)
@@ -84,7 +89,8 @@ def new_wallet():
         'public_key': binascii.hexlify(public_key.exportKey(format='DER')).decode('ascii')
     }
     key_storage[name] = response
-
+    with open('keys.json', 'w') as f:
+        f.write(json.dumps(key_storage))
     return jsonify(response), 200
 
 @app.route('/wallet/get', methods=['GET'])
@@ -92,6 +98,10 @@ def retrieve_wallet():
     response = {
         "data": []
     }
+    global key_storage
+    if len(key_storage) <= 0:
+        with open('keys.json') as f:
+            key_storage = json.loads(f.read())
     for key, val in key_storage.items():
         credential = {
             "name": key,
@@ -116,6 +126,52 @@ def generate_transaction():
 
 	return jsonify(response), 200
 
+
+@app.route('/generate/transaction/custom', methods=['POST'])
+def generate_transaction_custom():
+    sender_username = request.form['sender_username']
+    recipient_username = request.form['recipient_username']
+    value = request.form['amount'] 
+    currency = request.form['currency'] if 'currency' in request.form else 'coin'
+    if sender_username == "":
+        sender_username = "DuyHo"
+    if recipient_username == "":
+        recipient_username = "Srichakradhar"   
+    if value == "":
+        value = "1"
+    if currency == "":
+        currency = 'gold'
+    value = "{} {}(s)".format(value, currency)
+    sender_address = key_storage[sender_username]['public_key']
+    sender_private_key =  key_storage[sender_username]['private_key']
+    recipient_address = key_storage[recipient_username]['public_key']
+
+    transaction = Transaction(sender_address, sender_private_key, recipient_address, value)
+
+    response = {'transaction': transaction.to_dict(), 'signature': transaction.sign_transaction()}
+
+    return jsonify(response), 200
+@app.route('/generate/transaction/message', methods=['POST'])
+def generate_transaction_message():
+    sender_username = request.form['sender_username']
+    recipient_username = request.form['recipient_username']
+    value = request.form['amount']
+    if sender_username == "":
+        sender_username = "DuyHo"
+    if recipient_username == "":
+        recipient_username = "Srichakradhar"   
+    if value == "":
+        value = "Default message"
+    sender_address = key_storage[sender_username]['public_key']
+    sender_private_key =  key_storage[sender_username]['private_key']
+    recipient_address = key_storage[recipient_username]['public_key']
+
+
+    transaction = Transaction(sender_address, sender_private_key, recipient_address, value)
+
+    response = {'transaction': transaction.to_dict(), 'signature': transaction.sign_transaction()}
+
+    return jsonify(response), 200
 
 if __name__ == '__main__':
     from argparse import ArgumentParser

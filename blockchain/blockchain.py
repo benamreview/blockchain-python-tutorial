@@ -36,8 +36,8 @@ from uuid import uuid4
 import requests
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
-
-
+from flask_ngrok import run_with_ngrok
+# pip install git+git://github.com/benamreview/flask-ngrok.git@blockchain
 
 MINING_SENDER = "THE BLOCKCHAIN"
 MINING_REWARD = 1
@@ -114,7 +114,6 @@ class Blockchain:
                 'transactions': self.transactions,
                 'nonce': nonce,
                 'previous_hash': previous_hash}
-
         # Reset the current list of transactions
         self.transactions = []
 
@@ -221,6 +220,7 @@ class Blockchain:
 # Instantiate the Node
 app = Flask(__name__)
 CORS(app)
+run_with_ngrok(app)
 
 # Instantiate the Blockchain
 blockchain = Blockchain()
@@ -335,7 +335,12 @@ def get_nodes():
     response = {'nodes': nodes}
     return jsonify(response), 200
 
-
+@app.route('/hash', methods=['GET'])
+def hash_block():
+    block_number = request.args.get('block_number')
+    hash = blockchain.hash(blockchain.chain[int(block_number)-1])
+    print(hash)
+    return hash, 200
 
 if __name__ == '__main__':
     from argparse import ArgumentParser

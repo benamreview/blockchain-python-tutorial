@@ -72,7 +72,65 @@
   </div>
 
   <hr>
+  <div class = 'container' id = 'blockchain'>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card-body">
+          <h4 class="card-title">Current Blockchain Visualization &nbsp;&nbsp;&nbsp;
+            <button type="submit" id="refresh_blockchain" class="btn btn-sq-xs btn-primary">
+              <i class="fa fa-refresh"></i>
+            </button>
+          </h4>
+        </div>
+      </div>
+    </div>
+    <div class="alert alert-success col-md-5" style="display:none; margin:1px;" id='block'>
 
+      <div class="row">
+        <label class="col-sm-3">Block ID:</label>
+        <div class="col-sm-9">
+          <textarea rows="1" class="form-control block-id" readonly></textarea>
+
+          <br><br>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-3">Nonce: </label>
+        <div class="col-sm-9">
+          <textarea rows="1" class="form-control nonce" readonly></textarea>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <label class="col-sm-3">Data:</label>
+        <div class="col-sm-9">
+          <textarea rows="5" class="form-control data" readonly></textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-3">Prev:</label>
+        <div class="col-sm-9">
+          <textarea rows="1" class="form-control prev-hash" readonly></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-3">Hash:</label>
+        <div class="col-sm-9">
+          <textarea rows="1" class="form-control hash" readonly></textarea>
+        </div>
+      </div>
+      <hr>
+    </div>
+
+
+  </div>
+
+  <hr>
   <div class="container">
 
     <div class="row">
@@ -149,12 +207,47 @@
         type: 'GET',
         success: function (response) {
 
-          //console.log(response);
+          console.log(response);
+          var chain = response.chain;
           //Generate Transactions Table
           var transactions = [];
           count = 1;
 
           for (i = 1; i < response.length; i++) {
+
+            /////CREATE NEW BLOCK////
+            // console.log(current_block);
+            const current_block = chain[i];
+
+            $.ajax({
+              url: "/hash?block_number="+current_block['block_number'],
+              type: 'GET',
+              success: function (response) {
+                console.log(current_block['transactions']);
+
+                var newBlock = $("#block").clone();
+                // console.log(newBlock);
+                newBlock.find('.block-id').val(current_block['block_number']);
+                newBlock.find('.nonce').val(current_block['nonce']);
+                newBlock.find('.data').val(JSON.stringify(current_block['transactions']));
+                newBlock.find('.prev-hash').val(current_block['previous_hash']);
+                newBlock.find('.hash').val(response);
+
+                newBlock.css("display", 'inline-block');
+                // newBlock.show();
+                newBlock.appendTo("#blockchain");
+              }
+            })
+
+
+
+
+
+
+
+
+
+            //////
             for (j = 0; j < response["chain"][i]["transactions"].length; j++) {
 
               //format date 

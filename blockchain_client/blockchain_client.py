@@ -27,7 +27,8 @@ from Crypto.Signature import PKCS1_v1_5
 import json
 import requests
 from flask import Flask, jsonify, request, render_template
-
+from flask_ngrok import run_with_ngrok
+# pip install git+git://github.com/benamreview/flask-ngrok.git@blockchain-client
 
 class Transaction:
 
@@ -36,7 +37,7 @@ class Transaction:
         self.sender_private_key = sender_private_key
         self.recipient_address = recipient_address
         self.value = value
-       
+
 
     def __getattr__(self, attr):
         return self.data[attr]
@@ -58,7 +59,7 @@ class Transaction:
 
 
 app = Flask(__name__)
-
+run_with_ngrok(app)
 key_storage = {}
 @app.route('/')
 def index():
@@ -90,7 +91,7 @@ def new_wallet():
     }
     key_storage[name] = response
     with open('keys.json', 'w') as f:
-        f.write(json.dumps(key_storage))
+        f.write(json.dumps(key_storage, indent = 4))
     return jsonify(response), 200
 
 @app.route('/wallet/get', methods=['GET'])
@@ -127,16 +128,22 @@ def generate_transaction():
 	return jsonify(response), 200
 
 
-@app.route('/generate/transaction/custom', methods=['POST'])
+@app.route('/generate/transaction/custom', methods=['POST', 'GET'])
 def generate_transaction_custom():
-    sender_username = request.form['sender_username']
-    recipient_username = request.form['recipient_username']
-    value = request.form['amount'] 
-    currency = request.form['currency'] if 'currency' in request.form else 'coin'
+    if request.method == 'POST':
+        sender_username = request.form['sender_username']
+        recipient_username = request.form['recipient_username']
+        value = request.form['amount']
+        currency = request.form['currency'] if 'currency' in request.form else 'coin'
+    else:
+        sender_username = request.args.get('sender_username') if request.args.get('sender_username') is not None else "DuyHo"
+        recipient_username = request.args.get('recipient_username') if request.args.get('recipient_username') is not None else "Srichakradhar"
+        value = request.args.get('amount') if request.args.get('amount') is not None else '1'
+        currency = request.args.get('currency') if request.args.get('currency') is not None else 'coin'
     if sender_username == "":
         sender_username = "DuyHo"
     if recipient_username == "":
-        recipient_username = "Srichakradhar"   
+        recipient_username = "Srichakradhar"
     if value == "":
         value = "1"
     if currency == "":
@@ -151,15 +158,20 @@ def generate_transaction_custom():
     response = {'transaction': transaction.to_dict(), 'signature': transaction.sign_transaction()}
 
     return jsonify(response), 200
-@app.route('/generate/transaction/message', methods=['POST'])
+@app.route('/generate/transaction/message', methods=['POST', 'GET'])
 def generate_transaction_message():
-    sender_username = request.form['sender_username']
-    recipient_username = request.form['recipient_username']
-    value = request.form['amount']
+    if request.method == 'POST':
+        sender_username = request.form['sender_username']
+        recipient_username = request.form['recipient_username']
+        value = request.form['amount']
+    else:
+        sender_username = request.args.get('sender_username') if request.args.get('sender_username') is not None else "DuyHo"
+        recipient_username = request.args.get('recipient_username') if request.args.get('recipient_username') is not None else "Srichakradhar"
+        value = request.args.get('amount') if request.args.get('amount') is not None else 'Hi! How are you doing?'
     if sender_username == "":
         sender_username = "DuyHo"
     if recipient_username == "":
-        recipient_username = "Srichakradhar"   
+        recipient_username = "Srichakradhar"
     if value == "":
         value = "Default message"
     sender_address = key_storage[sender_username]['public_key']

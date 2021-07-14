@@ -1,3 +1,12 @@
 body {
 	padding-top: 54px;
 	}
+.row-horizon {
+	overflow-x: scroll !important;
+	overflow-y: hidden;
+	white-space:nowrap;
+}
+.container {
+	overflow-x: auto;
+	white-space: nowrap !important;
+}

@@ -1,0 +1,148 @@
+[18:55:42] [main/INFO]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[18:55:42] [main/INFO]: Reloading ResourceManager: Default, bukkit
+[18:55:42] [Worker-Main-10/INFO]: Loaded 7 recipes
+[18:55:43] [Server thread/INFO]: Starting minecraft server version 1.17.1
+[18:55:43] [Server thread/INFO]: Loading properties
+[18:55:43] [Server thread/INFO]: This server is running CraftBukkit version 3180-Spigot-38e6c03-ca0fe5b (MC: 1.17.1) (Implementing API version 1.17.1-R0.1-SNAPSHOT)
+[18:55:43] [Server thread/INFO]: Debug logging is disabled
+[18:55:43] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[18:55:44] [Server thread/INFO]: Using 4 threads for Netty based IO
+[18:55:44] [Server thread/INFO]: Default game type: SURVIVAL
+[18:55:44] [Server thread/INFO]: Generating keypair
+[18:55:44] [Server thread/INFO]: Starting Minecraft server on *:25565
+[18:55:44] [Server thread/INFO]: Using default channel type
+[18:55:44] [Server thread/WARN]: Initializing Legacy Material Support. Unless you have legacy plugins and/or data this is a bug!
+[18:55:46] [Server thread/WARN]: Legacy plugin RaspberryJuice v1.12.1 does not specify an api-version.
+[18:55:46] [Server thread/INFO]: [Blockchain] Loading Blockchain v1.0.0
+[18:55:46] [Server thread/INFO]: [RaspberryJuice] Loading RaspberryJuice v1.12.1
+[18:55:46] [Server thread/INFO]: Preparing level "world"
+[18:55:47] [Server thread/INFO]: -------- World Settings For [world] --------
+[18:55:47] [Server thread/INFO]: View Distance: 10
+[18:55:47] [Server thread/INFO]: Item Merge Radius: 2.5
+[18:55:47] [Server thread/INFO]: Item Despawn Rate: 6000
+[18:55:47] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[18:55:47] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[18:55:47] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[18:55:47] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[18:55:47] [Server thread/INFO]: Arrow Despawn Rate: 1200 Trident Respawn Rate:1200
+[18:55:47] [Server thread/INFO]: Experience Merge Radius: 3.0
+[18:55:47] [Server thread/INFO]: Mob Spawn Range: 6
+[18:55:47] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Cane Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Melon Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Beetroot Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Carrot Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Potato Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Vine Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Cocoa Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Bamboo Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: SweetBerry Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Kelp Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Ra 48 / Mi 16 / Tiv true
+[18:55:47] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[18:55:47] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Desert: 14357617 Igloo: 14357618 Jungle: 14357619 Swamp: 14357620 Monument: 10387313 Ocean: 14357621 Shipwreck: 165745295 End City: 10387313 Slime: 987234911 Bastion: 30084232 Fortress: 30084232 Mansion: 10387319 Fossil: 14357921 Portal: 34222645
+[18:55:47] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[18:55:47] [Server thread/INFO]: Max TNT Explosions: 100
+[18:55:47] [Server thread/INFO]: -------- World Settings For [world_nether] --------
+[18:55:47] [Server thread/INFO]: View Distance: 10
+[18:55:47] [Server thread/INFO]: Item Merge Radius: 2.5
+[18:55:47] [Server thread/INFO]: Item Despawn Rate: 6000
+[18:55:47] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[18:55:47] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[18:55:47] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[18:55:47] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[18:55:47] [Server thread/INFO]: Arrow Despawn Rate: 1200 Trident Respawn Rate:1200
+[18:55:47] [Server thread/INFO]: Experience Merge Radius: 3.0
+[18:55:47] [Server thread/INFO]: Mob Spawn Range: 6
+[18:55:47] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Cane Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Melon Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Beetroot Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Carrot Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Potato Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Vine Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Cocoa Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Bamboo Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: SweetBerry Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Kelp Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Ra 48 / Mi 16 / Tiv true
+[18:55:47] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[18:55:47] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Desert: 14357617 Igloo: 14357618 Jungle: 14357619 Swamp: 14357620 Monument: 10387313 Ocean: 14357621 Shipwreck: 165745295 End City: 10387313 Slime: 987234911 Bastion: 30084232 Fortress: 30084232 Mansion: 10387319 Fossil: 14357921 Portal: 34222645
+[18:55:47] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[18:55:47] [Server thread/INFO]: Max TNT Explosions: 100
+[18:55:47] [Server thread/INFO]: -------- World Settings For [world_the_end] --------
+[18:55:47] [Server thread/INFO]: View Distance: 10
+[18:55:47] [Server thread/INFO]: Item Merge Radius: 2.5
+[18:55:47] [Server thread/INFO]: Item Despawn Rate: 6000
+[18:55:47] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[18:55:47] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[18:55:47] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[18:55:47] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[18:55:47] [Server thread/INFO]: Arrow Despawn Rate: 1200 Trident Respawn Rate:1200
+[18:55:47] [Server thread/INFO]: Experience Merge Radius: 3.0
+[18:55:47] [Server thread/INFO]: Mob Spawn Range: 6
+[18:55:47] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Cane Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Melon Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Beetroot Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Carrot Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Potato Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Vine Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Cocoa Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Bamboo Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: SweetBerry Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Kelp Growth Modifier: 100%
+[18:55:47] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Ra 48 / Mi 16 / Tiv true
+[18:55:47] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[18:55:47] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Desert: 14357617 Igloo: 14357618 Jungle: 14357619 Swamp: 14357620 Monument: 10387313 Ocean: 14357621 Shipwreck: 165745295 End City: 10387313 Slime: 987234911 Bastion: 30084232 Fortress: 30084232 Mansion: 10387319 Fossil: 14357921 Portal: 34222645
+[18:55:47] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[18:55:47] [Server thread/INFO]: Max TNT Explosions: 100
+[18:55:47] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[18:55:47] [Worker-Main-13/INFO]: Preparing spawn area: 0%
+[18:55:49] [Worker-Main-12/INFO]: Preparing spawn area: 0%
+[18:55:49] [Worker-Main-8/INFO]: Preparing spawn area: 0%
+[18:55:49] [Worker-Main-12/INFO]: Preparing spawn area: 0%
+[18:55:49] [Worker-Main-8/INFO]: Preparing spawn area: 0%
+[18:55:49] [Worker-Main-8/INFO]: Preparing spawn area: 4%
+[18:55:50] [Worker-Main-8/INFO]: Preparing spawn area: 55%
+[18:55:50] [Worker-Main-11/INFO]: Preparing spawn area: 85%
+[18:55:51] [Worker-Main-11/INFO]: Preparing spawn area: 96%
+[18:55:51] [Server thread/INFO]: Time elapsed: 4092 ms
+[18:55:51] [Server thread/INFO]: Preparing start region for dimension minecraft:the_nether
+[18:55:51] [Worker-Main-14/INFO]: Preparing spawn area: 0%
+[18:55:51] [Worker-Main-11/INFO]: Preparing spawn area: 0%
+[18:55:52] [Worker-Main-11/INFO]: Preparing spawn area: 15%
+[18:55:52] [Worker-Main-8/INFO]: Preparing spawn area: 68%
+[18:55:53] [Worker-Main-11/INFO]: Preparing spawn area: 77%
+[18:55:53] [Worker-Main-8/INFO]: Preparing spawn area: 85%
+[18:55:54] [Worker-Main-11/INFO]: Preparing spawn area: 91%
+[18:55:54] [Server thread/INFO]: Time elapsed: 3490 ms
+[18:55:54] [Server thread/INFO]: Preparing start region for dimension minecraft:the_end
+[18:55:54] [Worker-Main-13/INFO]: Preparing spawn area: 0%
+[18:55:55] [Worker-Main-14/INFO]: Preparing spawn area: 33%
+[18:55:55] [Server thread/INFO]: Time elapsed: 856 ms
+[18:55:55] [Server thread/INFO]: [Blockchain] Enabling Blockchain v1.0.0
+[18:55:55] [Server thread/INFO]: onEnable() works
+[18:55:56] [Server thread/INFO]: JSON String Result {  "chain": [    {      "block_number": 1,       "nonce": 0,       "previous_hash": "00",       "timestamp": 1626301361.240903,       "transactions": []    },     {      "block_number": 2,       "nonce": 213,       "previous_hash": "cd43ee17de92e42937f8493dbe97b0541140c82aff80f368185b2b83cd26352e",       "timestamp": 1626301454.1620662,       "transactions": [        {          "recipient_address": "30819f300d06092a864886f70d010101050003818d003081890281810096884b2aa7259bf6e5a82dca34f97f73b741b5681c632a379392c3ec1d28577063f4408213d5f75af91cee29cc53fe706b4d04b61526b6097c732abcc29b23605f6fa5c26d9220633c1761f4faf0bdeaabec2969749ba112b67448768a0a8f47953fce4e609a70f1400f6ec3df77b4d8820ecfad6e5d538b204412beb867a94f0203010001",           "sender_address": "30819f300d06092a864886f70d010101050003818d0030818902818100d3957d7005713de15d31a5c8cc56fd479b0df658ed8b8686b1b718aec9f94bed5a93d6b3e64b207ad8cfd7e5eb7f215f779e343cc3a206c3efd8c5fa1cbd6fa8da5677cc3fd43bbfcbc53eeb290e4b098858ebf4705ebff2cfdc6220fbb4308bef6f528a6584fce1b8ea91a22639973342fd92c6ba4480442d00cd1cce310fdd0203010001",           "value": "Hi!!!"        },         {          "recipient_address": "f53096e0ca4848fd94cc3da50144f1d5",           "sender_address": "THE BLOCKCHAIN",           "value": 1        }      ]    },     {      "block_number": 3,       "nonce": 340,       "previous_hash": "1c100ea0f511cff089c0d10947fd405c99b0087d7fa8e1e80d0ff03963c5ee60",       "timestamp": 1626301478.5478458,       "transactions": [        {          "recipient_address": "30819f300d06092a864886f70d010101050003818d0030818902818100b7e79260203a4574dd407790694e5b3b07579ea6d8e2eb2c673acb45f5550d0439718d02fda8789baa95bf9105612c6416cc521a4778e30642d64f3dd61b70370dbb9ef14ce8b2ffd4c21bfdb95a16b258f2b82010ddece086d1993901765584f956a44fdca19c605c15cdda53ef32648a8c6b2c488bf4b40c907e1c2eec0a9f0203010001",           "sender_address": "30819f300d06092a864886f70d010101050003818d0030818902818100d3957d7005713de15d31a5c8cc56fd479b0df658ed8b8686b1b718aec9f94bed5a93d6b3e64b207ad8cfd7e5eb7f215f779e343cc3a206c3efd8c5fa1cbd6fa8da5677cc3fd43bbfcbc53eeb290e4b098858ebf4705ebff2cfdc6220fbb4308bef6f528a6584fce1b8ea91a22639973342fd92c6ba4480442d00cd1cce310fdd0203010001",           "value": "Hello Sri!"        },         {          "recipient_address": "f53096e0ca4848fd94cc3da50144f1d5",           "sender_address": "THE BLOCKCHAIN",           "value": 1        }      ]    },     {      "block_number": 4,       "nonce": 21,       "previous_hash": "35d64b2c9faa55e1461526d5a57d0b6b8282024455ada736ef275c4825c5b6c4",       "timestamp": 1626301985.7618825,       "transactions": [        {          "recipient_address": "30819f300d06092a864886f70d010101050003818d003081890281810096884b2aa7259bf6e5a82dca34f97f73b741b5681c632a379392c3ec1d28577063f4408213d5f75af91cee29cc53fe706b4d04b61526b6097c732abcc29b23605f6fa5c26d9220633c1761f4faf0bdeaabec2969749ba112b67448768a0a8f47953fce4e609a70f1400f6ec3df77b4d8820ecfad6e5d538b204412beb867a94f0203010001",           "sender_address": "30819f300d06092a864886f70d010101050003818d0030818902818100d3957d7005713de15d31a5c8cc56fd479b0df658ed8b8686b1b718aec9f94bed5a93d6b3e64b207ad8cfd7e5eb7f215f779e343cc3a206c3efd8c5fa1cbd6fa8da5677cc3fd43bbfcbc53eeb290e4b098858ebf4705ebff2cfdc6220fbb4308bef6f528a6584fce1b8ea91a22639973342fd92c6ba4480442d00cd1cce310fdd0203010001",           "value": "Hello Dr. Lee!"        },         {          "recipient_address": "30819f300d06092a864886f70d010101050003818d0030818902818100d3957d7005713de15d31a5c8cc56fd479b0df658ed8b8686b1b718aec9f94bed5a93d6b3e64b207ad8cfd7e5eb7f215f779e343cc3a206c3efd8c5fa1cbd6fa8da5677cc3fd43bbfcbc53eeb290e4b098858ebf4705ebff2cfdc6220fbb4308bef6f528a6584fce1b8ea91a22639973342fd92c6ba4480442d00cd1cce310fdd0203010001",           "sender_address": "30819f300d06092a864886f70d010101050003818d003081890281810096884b2aa7259bf6e5a82dca34f97f73b741b5681c632a379392c3ec1d28577063f4408213d5f75af91cee29cc53fe706b4d04b61526b6097c732abcc29b23605f6fa5c26d9220633c1761f4faf0bdeaabec2969749ba112b67448768a0a8f47953fce4e609a70f1400f6ec3df77b4d8820ecfad6e5d538b204412beb867a94f0203010001",           "value": "2 Gold(s)"        },         {          "recipient_address": "f53096e0ca4848fd94cc3da50144f1d5",           "sender_address": "THE BLOCKCHAIN",           "value": 1        }      ]    }  ],   "length": 4}
+[18:55:56] [Server thread/INFO]: [RaspberryJuice] Enabling RaspberryJuice v1.12.1
+[18:55:56] [Server thread/INFO]: [RaspberryJuice] Using host:port - 0.0.0.0:4711
+[18:55:56] [Server thread/INFO]: [RaspberryJuice] Using RELATIVE locations
+[18:55:56] [Server thread/INFO]: [RaspberryJuice] Using RIGHT clicks for hits
+[18:55:56] [Server thread/INFO]: [RaspberryJuice] ThreadListener Started
+[18:55:56] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[18:55:56] [Server thread/INFO]: Done (9.385s)! For help, type "help"

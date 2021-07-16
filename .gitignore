@@ -1,0 +1,6 @@
+*.log
+*.lock
+Java/Duy-Plugin/.idea/vcs.xml
+
+Java/Server/logs/latest.log
+*.log.gz

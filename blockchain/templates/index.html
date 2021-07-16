@@ -72,7 +72,7 @@
   </div>
 
   <hr>
-  <div class = 'container' id = 'blockchain'>
+  <div class='container'>
     <div class="row">
       <div class="col-lg-12">
         <div class="card-body">
@@ -84,7 +84,10 @@
         </div>
       </div>
     </div>
-    <div class="alert alert-success col-md-5" style="display:none; margin:1px;" id='block'>
+  </div>
+  <div class='container' id='blockchain' style='max-width: 90%'>
+
+    <div class="alert alert-success col-md-2" style="display:none; margin:1px;" id='block'>
 
       <div class="row">
         <label class="col-sm-3">Block ID:</label>
@@ -213,15 +216,16 @@
           var transactions = [];
           count = 1;
 
-          for (i = 1; i < response.length; i++) {
+          for (i = 0; i < response.length; i++) {
 
             /////CREATE NEW BLOCK////
             // console.log(current_block);
             const current_block = chain[i];
 
             $.ajax({
-              url: "/hash?block_number="+current_block['block_number'],
+              url: "/hash?block_number=" + current_block['block_number'],
               type: 'GET',
+              async: false,
               success: function (response) {
                 console.log(current_block['transactions']);
 

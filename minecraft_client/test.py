@@ -1,7 +1,7 @@
 from mcpi.minecraft import Minecraft
 import requests
 from time import sleep
-blockID = 42
+blockID = 57
 mc = Minecraft.create()
 # mc.player.setTilePos(0,0,0)
 mc.postToChat("Hello World!")

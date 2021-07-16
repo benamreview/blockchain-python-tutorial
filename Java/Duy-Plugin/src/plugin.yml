@@ -1,0 +1,5 @@
+name: Blockchain
+version: 1.0.0
+author: Duy Ho
+main: duy.summercamp.blockchainplugin.BlockChainPlugin
+api-version: 1.17

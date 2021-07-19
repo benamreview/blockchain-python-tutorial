@@ -49,6 +49,8 @@ public class BlockChainPlugin extends JavaPlugin{
 //            e.printStackTrace();
 //        }
         getCommand("blockchain").setExecutor(new BlockchainCommand());
+        getCommand("blocktalk").setExecutor(new BlockChat());
+
 
 
     }

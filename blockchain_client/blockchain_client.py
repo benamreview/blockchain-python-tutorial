@@ -28,6 +28,7 @@ import json
 import requests
 from flask import Flask, jsonify, request, render_template
 from flask_ngrok import run_with_ngrok
+from copy import deepcopy
 # pip install git+git://github.com/benamreview/flask-ngrok.git@blockchain-client
 
 class Transaction:
@@ -89,6 +90,7 @@ def new_wallet():
         'private_key': binascii.hexlify(private_key.exportKey(format='DER')).decode('ascii'),
         'public_key': binascii.hexlify(public_key.exportKey(format='DER')).decode('ascii')
     }
+    
     key_storage[name] = response
     with open('keys.json', 'w') as f:
         f.write(json.dumps(key_storage, indent = 4))
@@ -96,21 +98,44 @@ def new_wallet():
 
 @app.route('/wallet/get', methods=['GET'])
 def retrieve_wallet():
-    response = {
-        "data": []
-    }
+    name = request.args.get('username')
     global key_storage
     if len(key_storage) <= 0:
-        with open('keys.json') as f:
-            key_storage = json.loads(f.read())
-    for key, val in key_storage.items():
-        credential = {
-            "name": key,
-            'public_key': val['public_key'],
-            'private_key': val['private_key']
-        }
+            with open('keys.json') as f:
+                key_storage = json.loads(f.read())
+    response = {
+            "data": []
+    }
+    if name == "" or name is None:
+        for key, val in key_storage.items():
+            credential = {
+                "name": key,
+                'public_key': val['public_key'],
+                'private_key': val['private_key']
+            }
+            response['data'].append(credential)
+    else:
+        if name in key_storage:
+            credential = {
+                "name": name,
+                'public_key': key_storage[name]['public_key'],
+                'private_key': key_storage[name]['private_key']
+            }
+        else:
+            random_gen = Crypto.Random.new().read
+            private_key = RSA.generate(1024, random_gen)
+            public_key = private_key.publickey()
+            new_pair = {
+                'private_key': binascii.hexlify(private_key.exportKey(format='DER')).decode('ascii'),
+                'public_key': binascii.hexlify(public_key.exportKey(format='DER')).decode('ascii')
+            }
+            key_storage[name] = new_pair
+            with open('keys.json', 'w') as f:
+                f.write(json.dumps(key_storage, indent = 4))
+            credential = deepcopy(new_pair)
+            credential['name'] = name
         response['data'].append(credential)
-
+    
     return jsonify(response), 200
 
 @app.route('/generate/transaction', methods=['POST'])
@@ -163,20 +188,31 @@ def generate_transaction_message():
     if request.method == 'POST':
         sender_username = request.form['sender_username']
         recipient_username = request.form['recipient_username']
-        value = request.form['amount']
+        value = request.form['message']
     else:
         sender_username = request.args.get('sender_username') if request.args.get('sender_username') is not None else "DuyHo"
         recipient_username = request.args.get('recipient_username') if request.args.get('recipient_username') is not None else "Srichakradhar"
-        value = request.args.get('amount') if request.args.get('amount') is not None else 'Hi! How are you doing?'
+        value = request.args.get('message') if request.args.get('message') is not None else 'Hi! How are you doing?'
     if sender_username == "":
         sender_username = "DuyHo"
     if recipient_username == "":
         recipient_username = "Srichakradhar"
     if value == "":
         value = "Default message"
-    sender_address = key_storage[sender_username]['public_key']
-    sender_private_key =  key_storage[sender_username]['private_key']
-    recipient_address = key_storage[recipient_username]['public_key']
+
+    if sender_username in key_storage:
+        sender_address = key_storage[sender_username]['public_key']
+        sender_private_key = key_storage[sender_username]['private_key']
+        
+    else:
+        new_pair = generate_new_key(sender_username)
+        sender_address = new_pair['public_key']
+        sender_private_key =  new_pair['private_key']
+    if recipient_username in key_storage:
+        recipient_address = key_storage[recipient_username]['public_key']
+    else:
+        new_pair = generate_new_key(recipient_username)
+        recipient_address = new_pair['public_key']
 
 
     transaction = Transaction(sender_address, sender_private_key, recipient_address, value)
@@ -185,6 +221,22 @@ def generate_transaction_message():
 
     return jsonify(response), 200
 
+def generate_new_key(username):
+    name = username
+    if name is "" or name is None:
+        name = 'anonymous'
+    random_gen = Crypto.Random.new().read
+    private_key = RSA.generate(1024, random_gen)
+    public_key = private_key.publickey()
+    response = {
+        'private_key': binascii.hexlify(private_key.exportKey(format='DER')).decode('ascii'),
+        'public_key': binascii.hexlify(public_key.exportKey(format='DER')).decode('ascii')
+    }
+    
+    key_storage[name] = response
+    with open('keys.json', 'w') as f:
+        f.write(json.dumps(key_storage, indent = 4))
+    return response
 if __name__ == '__main__':
     from argparse import ArgumentParser
 

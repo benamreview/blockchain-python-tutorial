@@ -145,7 +145,7 @@
       <div class="row">
         <label class="col-sm-2">Message:</label>
         <div class="col-sm-10">
-          <input type="text" name="amount" id="amount" rows="2" class="form-control"
+          <input type="text" name="message" id="message" rows="2" class="form-control"
             placeholder='Hi! How are you doing?'>
         </div>
       </div>
@@ -291,7 +291,7 @@
             <div class="row">
               <label class="col-sm-12">Message:</label>
               <div class="col-sm-12">
-                <input type="text" name="amount" id="confirmation_amount" rows="2" class="form-control" readonly>
+                <input type="text" name="message" id="confirmation_message" rows="2" class="form-control" readonly>
               </div>
             </div>
 
@@ -406,7 +406,7 @@
 
               document.getElementById("confirmation_sender_address").value = response["transaction"]["sender_address"];
               document.getElementById("confirmation_recipient_address").value = response["transaction"]["recipient_address"];
-              document.getElementById("confirmation_amount").value = response["transaction"]["value"];
+              document.getElementById("confirmation_message").value = response["transaction"]["value"];
               document.getElementById("transaction_signature").value = response["signature"];
 
               // $("#basicModal").modal('show');

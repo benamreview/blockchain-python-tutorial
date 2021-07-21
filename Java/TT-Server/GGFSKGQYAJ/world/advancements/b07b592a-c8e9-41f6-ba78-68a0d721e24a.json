@@ -44,6 +44,7 @@
   "minecraft:adventure/adventuring_time": {
     "criteria": {
       "minecraft:forest": "2021-07-16 02:17:20 -0500",
+      "minecraft:mountains": "2021-07-21 03:02:40 -0500",
       "minecraft:river": "2021-07-16 03:25:03 -0500"
     },
     "done": false

@@ -5,10 +5,14 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventException;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 public class BlockListener implements Listener {
     @EventHandler
@@ -19,19 +23,26 @@ public class BlockListener implements Listener {
 
         if (action.equals(Action.LEFT_CLICK_BLOCK)) {
             if (block.getType().equals(Material.WARPED_WALL_SIGN)) {
-                player.sendMessage(ChatColor.GREEN + "...Decrypting Messages in this Block...");
+                player.sendMessage(ChatColor.BLUE + "...Decrypting Messages in this Block...");
                 BlockState state = block.getState();
                 Sign sign = (Sign) state;
                 String signline1 = sign.getLine(1);
-                player.sendMessage(ChatColor.YELLOW + signline1);
+                player.sendMessage(ChatColor.YELLOW + "Message: " + signline1);
 
-                String originalInput = "test input";
-                String encodedString = Base64.getEncoder().encodeToString(originalInput.getBytes());
-                System.out.println(encodedString);
-                System.out.println(signline1);
-                byte[] decodedBytes = Base64.getDecoder().decode(signline1.replace("\"", ""));
-                String decodedString = new String(decodedBytes);
-                player.sendMessage(ChatColor.GREEN + decodedString);
+                try {
+                    byte[] decodedBytes = Base64.getDecoder().decode(signline1);
+                    String decodedString = new String(decodedBytes);
+                    if (decodedString.contains(player.getName())) {
+                        player.sendMessage(ChatColor.GREEN + "Decrypted Message: " + decodedString);
+                    } else {
+                        player.sendMessage(ChatColor.RED + "This transaction is NOT for you!!!");
+                    }
+                }
+                catch (Exception e) {
+                    System.out.println(e);
+                    player.sendMessage(ChatColor.RED + "This block does not contain an encrypted message or transaction!");
+                }
+
 
             } else {
                 player.sendMessage(

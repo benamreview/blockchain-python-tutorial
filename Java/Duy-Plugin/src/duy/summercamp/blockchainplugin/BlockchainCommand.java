@@ -116,7 +116,7 @@ public class BlockchainCommand implements CommandExecutor {
                             player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum,0)).setType(Material.WARPED_WALL_SIGN);
                             Sign bottomSign= (Sign) player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum,0)).getState();
                             bottomSign.setLine(0, "Transaction Data:" );
-                            bottomSign.setLine(1,  "\"" + transaction.value + "\"");
+                            bottomSign.setLine(1,  transaction.value);
 
                             Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "\n" + transaction.value);
                             bottomSign.update();

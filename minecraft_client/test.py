@@ -1,10 +1,12 @@
 from mcpi.minecraft import Minecraft
-import requests
+# import requests
 from time import sleep
-blockID = 57
+blockID = 20
+# blockID = 57
+
 mc = Minecraft.create()
 # mc.player.setTilePos(0,0,0)
-mc.postToChat("Hello World!")
+mc.postToChat("Created a BIG Canvas!")
 # mc.postToChat(mc.player.getPos())
 
 # response = requests.get("https://blockchain-main.ngrok.io/chain")
@@ -15,6 +17,9 @@ mc.postToChat("Hello World!")
 
 x, y, z = mc.player.getPos()
 mc.setBlock(x, y, z, blockID)
+for i in range(20):
+    for j in range(20):
+        mc.setBlock(x+i, y+j, z, blockID)
 # while True:
 #     x, y, z = mc.player.getPos()
 #     mc.setBlock(x, y, z, 5)

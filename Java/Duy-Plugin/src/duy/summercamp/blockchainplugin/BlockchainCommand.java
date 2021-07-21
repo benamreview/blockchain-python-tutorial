@@ -82,14 +82,7 @@ public class BlockchainCommand implements CommandExecutor {
                     Type listType = new TypeToken<List<Block>>() {}.getType();
 //                    System.out.println(rootObj.get("chain").getAsJsonArray());
                     List<Block> blockchain = new Gson().fromJson(chainJSON, listType);
-//                    Block[] blockchain = gson.fromJson(response.toString(), Block[].class);
-//                    player.getWorld().getBlockAt(player.getLocation().add(1,0,1)).setType(Material.DIAMOND_BLOCK);
-//                    player.getWorld().getBlockAt(player.getLocation().add(2,0,1)).setType(Material.DIAMOND_BLOCK);
-//                    player.getWorld().getBlockAt(player.getLocation().add(3,0,1)).setType(Material.DIAMOND_BLOCK);
 
-//                    player.getWorld().getBlockAt(player.getLocation()).setBlockData(new Material());
-
-                    //                    System.out.println(blockchain);
                     float startingX = 0;
                     Location playerLoc = player.getLocation();
                     for (Block block: blockchain) {

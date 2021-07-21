@@ -37,6 +37,8 @@ import requests
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from flask_ngrok import run_with_ngrok
+from copy import deepcopy
+from base64 import b16encode, b16decode, b64decode, b64encode
 # pip install git+git://github.com/benamreview/flask-ngrok.git@blockchain
 
 MINING_SENDER = "THE BLOCKCHAIN"
@@ -238,6 +240,7 @@ def configure():
 @app.route('/transactions/new', methods=['POST'])
 def new_transaction():
     print('NEW TRANSACTION!')
+    
     values = request.form
 
     # Check that the required fields are in the POST'ed data
@@ -264,8 +267,14 @@ def get_transactions():
 
 @app.route('/chain', methods=['GET'])
 def full_chain():
+    chain_copy = deepcopy(blockchain.chain)
+    print(chain_copy)
+    for block in chain_copy:
+        for tran in block["transactions"]:
+            encoded_string = b64encode(str(tran['value']).encode())
+            tran['value'] = encoded_string.decode()
     response = {
-        'chain': blockchain.chain,
+        'chain': chain_copy,
         'length': len(blockchain.chain),
     }
     return jsonify(response), 200

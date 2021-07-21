@@ -1,4 +1,5 @@
 package duy.summercamp.blockchainplugin;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -50,6 +51,10 @@ public class BlockChainPlugin extends JavaPlugin{
 //        }
         getCommand("blockchain").setExecutor(new BlockchainCommand());
         getCommand("blocktalk").setExecutor(new BlockChat());
+        BlockListener blockListener = new BlockListener();
+
+        PluginManager pm = getServer().getPluginManager();
+        pm.registerEvents(blockListener, this);
 
 
 

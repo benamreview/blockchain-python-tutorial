@@ -53,9 +53,9 @@ public class BlockChat implements CommandExecutor {
         p2.sendMessage(p.getName() + " -> me: " + msg.replaceFirst(" " + args[0], ""));
         p.sendMessage("me -> " + args[0] + ": " + msg.replaceFirst(" " + args[0], ""));
 
-
+        String full_message = p.getName() + " -> " + p2.getName() + ": " +  msg.replaceFirst(" " + args[0], "");
         URL urlForGetRequest = null;
-        String URLString = String.format("https://blockchain-client.ngrok.io/generate/transaction/message?sender_username=%1$s&recipient_username=%2$s&message=%3$s", p.getName(), recipientUsername, URLEncoder.encode(msg.replaceFirst(" " + args[0] + " ", "")), "UTF-8");
+        String URLString = String.format("https://blockchain-client.ngrok.io/generate/transaction/message?sender_username=%1$s&recipient_username=%2$s&message=%3$s", p.getName(), recipientUsername, URLEncoder.encode(full_message), "UTF-8");
 //        String URLString = String.format("https://blockchain-client.ngrok.io/generate/transaction/message");
 
         Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n" + URLString);

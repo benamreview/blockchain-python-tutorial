@@ -91,36 +91,42 @@ public class BlockchainCommand implements CommandExecutor {
                         Timestamp ts=new Timestamp(block.timestamp);
                         Date transactionDate = new Date(ts.getTime());
                         // ...
-                        int currentLine = 1;
 //                        Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n" + block.nonce);
                         Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n" + block.block_number);
 
-                        Location newSpawnLocation = playerLoc.add(startingX, 0, 0);
-                        player.getWorld().getBlockAt(player.getLocation().add(startingX,1,1)).setType(Material.DIAMOND_BLOCK);
-                        player.getWorld().getBlockAt(player.getLocation().add(startingX,1,0)).setType(Material.WARPED_WALL_SIGN);
-                        player.getWorld().getBlockAt(player.getLocation().add(startingX,2,1)).setType(Material.DIAMOND_BLOCK);
-                        player.getWorld().getBlockAt(player.getLocation().add(startingX,2,0)).setType(Material.WARPED_WALL_SIGN);
 
-                        Sign topSign= (Sign) player.getWorld().getBlockAt(player.getLocation().add(startingX,2,0)).getState();
-                        Sign bottomSign= (Sign) player.getWorld().getBlockAt(player.getLocation().add(startingX,1,0)).getState();
+                        int transactionNum = block.transactions.length;
+
+                        System.out.println(transactionNum);
+
+                        Location newSpawnLocation = playerLoc.add(startingX, 0, 0);
+                        player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum+1,1)).setType(Material.DIAMOND_BLOCK);
+                        player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum+1,0)).setType(Material.WARPED_WALL_SIGN);
+
+
+                        Sign topSign= (Sign) player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum+1,0)).getState();
 
                         topSign.setLine(0, "Block ID: " + String.valueOf(block.block_number));
                         topSign.setLine(1, "Nonce: " + String.valueOf(block.nonce));
                         topSign.setLine(2, "Prev:" + String.valueOf(block.previous_hash));
                         topSign.setLine(3, "Date:" + transactionDate);
 
-                        bottomSign.setLine(0, "Transactions:" );
                         for (Transaction transaction : block.transactions) {
+                            player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum,1)).setType(Material.DIAMOND_BLOCK);
+                            player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum,0)).setType(Material.WARPED_WALL_SIGN);
+                            Sign bottomSign= (Sign) player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum,0)).getState();
+                            bottomSign.setLine(0, "Transaction Data:" );
+                            bottomSign.setLine(1,  "\"" + transaction.value + "\"");
 
                             Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "\n" + transaction.value);
-                            bottomSign.setLine(currentLine,  "\"" + transaction.value + "\"");
-                            currentLine+=1;
+                            bottomSign.update();
+
+                            transactionNum-=1;
 
                         }
 
                         topSign.update();
-                        bottomSign.update();
-                        startingX-=1;
+                        startingX-=2;
 
                         Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\nSign Update");
 

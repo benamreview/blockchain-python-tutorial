@@ -176,7 +176,7 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
                 }
             }, 10L);
         }
-        else {
+        else if (blockMat.toString().contains("DIAMOND_BLOCK"))  {
             final Material matToRecover = e.getBlock().getType();
 
             scheduler.scheduleSyncDelayedTask(this, new Runnable() {

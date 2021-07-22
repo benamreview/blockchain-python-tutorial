@@ -83,11 +83,65 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
         System.out.println("Block Break!");
 
         Location blockl = e.getBlock().getLocation();
-        final Material block = e.getBlock().getType();
-
+        Material blockMat = e.getBlock().getType();
         final org.bukkit.block.Block blockb = e.getPlayer().getWorld().getBlockAt(blockl);
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-        if (block == Material.WARPED_WALL_SIGN) {
+        if (blockMat.toString().contains("OAK_SIGN")) {
+            BlockState state = e.getBlock().getState();
+            Sign sign = (Sign) state;
+//            String tempData = sign.getLine(1);
+            Player player = e.getPlayer();
+            
+            String blockIndex = sign.getLine(0);
+            String nonce = sign.getLine(1);
+            String prevHash = sign.getLine(2);
+            String date = sign.getLine(3);
+
+
+            try {
+                byte[] decodedBytes = Base64.getDecoder().decode(data);
+                String decodedString = new String(decodedBytes);
+
+                if (decodedString.contains(player.getName())) {
+                    sign.setLine(1, decodedString);
+                    blockMat = Material.BIRCH_WALL_SIGN;
+                    player.sendMessage(ChatColor.GREEN + "Decrypted Message: " + decodedString);
+                } else {
+                    blockMat = Material.CRIMSON_WALL_SIGN;
+                    player.sendMessage(ChatColor.RED + "This transaction is NOT for you!!!");
+
+                }
+            }
+            catch (Exception ex) {
+                System.out.println(ex);
+                player.sendMessage(ChatColor.RED + "This block does not contain an encrypted message or transaction!");
+            }
+            final String transactionData = sign.getLine(1);
+            final Material matToRecover = blockMat;
+
+
+            scheduler.scheduleSyncDelayedTask(this, new Runnable() {
+                @Override
+                public void run() {
+//                System.out.println("run!");
+                    blockb.setType(matToRecover);
+                    System.out.println(matToRecover);
+                    if (matToRecover.toString().contains("WALL_SIGN")) {
+
+                        BlockState newState = e.getBlock().getState();
+                        Sign newSign = (Sign) newState;
+                        newSign.setLine(0, "Transaction Data:");
+                        newSign.setLine(1, transactionData);
+
+                        newSign.update();
+                        System.out.println(newSign.getLine(0));
+
+
+                    }
+                }
+            }, 10L);
+        }
+        else if (blockMat.toString().contains("WALL_SIGN")) {
             BlockState state = e.getBlock().getState();
             Sign sign = (Sign) state;
 //            String tempData = sign.getLine(1);
@@ -101,8 +155,10 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
 
                 if (decodedString.contains(player.getName())) {
                     sign.setLine(1, decodedString);
+                    blockMat = Material.BIRCH_WALL_SIGN;
                     player.sendMessage(ChatColor.GREEN + "Decrypted Message: " + decodedString);
                 } else {
+                    blockMat = Material.CRIMSON_WALL_SIGN;
                     player.sendMessage(ChatColor.RED + "This transaction is NOT for you!!!");
 
                 }
@@ -112,18 +168,20 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
                 player.sendMessage(ChatColor.RED + "This block does not contain an encrypted message or transaction!");
             }
             final String transactionData = sign.getLine(1);
+            final Material matToRecover = blockMat;
+
 
             scheduler.scheduleSyncDelayedTask(this, new Runnable() {
                 @Override
                 public void run() {
 //                System.out.println("run!");
-                    blockb.setType(block);
-                    System.out.println(block);
-                    if (block == Material.WARPED_WALL_SIGN) {
+                    blockb.setType(matToRecover);
+                    System.out.println(matToRecover);
+                    if (matToRecover.toString().contains("WALL_SIGN")) {
 
                         BlockState newState = e.getBlock().getState();
                         Sign newSign = (Sign) newState;
-                        newSign.setLine(0, "Transaction:");
+                        newSign.setLine(0, "Transaction Data:");
                         newSign.setLine(1, transactionData);
 
                         newSign.update();
@@ -135,12 +193,14 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
             }, 10L);
         }
         else {
+            final Material matToRecover = e.getBlock().getType();
+
             scheduler.scheduleSyncDelayedTask(this, new Runnable() {
                 @Override
                 public void run() {
 //                System.out.println("run!");
-                    blockb.setType(block);
-                    System.out.println(block);
+                    blockb.setType(matToRecover);
+                    System.out.println(matToRecover);
                 }
             }, 10L);
         }

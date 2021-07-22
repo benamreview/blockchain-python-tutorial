@@ -101,7 +101,7 @@ public class BlockchainCommand implements CommandExecutor {
 
                         Location newSpawnLocation = playerLoc.add(startingX, 0, 0);
                         player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum+1,1)).setType(Material.DIAMOND_BLOCK);
-                        player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum+1,0)).setType(Material.WARPED_WALL_SIGN);
+                        player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum+1,0)).setType(Material.OAK_SIGN);
 
 
                         Sign topSign= (Sign) player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum+1,0)).getState();

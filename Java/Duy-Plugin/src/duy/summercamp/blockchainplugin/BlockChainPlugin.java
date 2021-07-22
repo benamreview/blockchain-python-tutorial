@@ -86,36 +86,18 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
         Material blockMat = e.getBlock().getType();
         final org.bukkit.block.Block blockb = e.getPlayer().getWorld().getBlockAt(blockl);
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-        if (blockMat.toString().contains("OAK_SIGN")) {
+        if (blockMat.toString().contains("DARK_OAK_WALL_SIGN")) {
             BlockState state = e.getBlock().getState();
             Sign sign = (Sign) state;
 //            String tempData = sign.getLine(1);
             Player player = e.getPlayer();
             
-            String blockIndex = sign.getLine(0);
-            String nonce = sign.getLine(1);
-            String prevHash = sign.getLine(2);
-            String date = sign.getLine(3);
+            final String blockIndex = sign.getLine(0);
+            final String nonce = sign.getLine(1);
+            final String prevHash = sign.getLine(2);
+            final String date = sign.getLine(3);
 
 
-            try {
-                byte[] decodedBytes = Base64.getDecoder().decode(data);
-                String decodedString = new String(decodedBytes);
-
-                if (decodedString.contains(player.getName())) {
-                    sign.setLine(1, decodedString);
-                    blockMat = Material.BIRCH_WALL_SIGN;
-                    player.sendMessage(ChatColor.GREEN + "Decrypted Message: " + decodedString);
-                } else {
-                    blockMat = Material.CRIMSON_WALL_SIGN;
-                    player.sendMessage(ChatColor.RED + "This transaction is NOT for you!!!");
-
-                }
-            }
-            catch (Exception ex) {
-                System.out.println(ex);
-                player.sendMessage(ChatColor.RED + "This block does not contain an encrypted message or transaction!");
-            }
             final String transactionData = sign.getLine(1);
             final Material matToRecover = blockMat;
 
@@ -126,15 +108,16 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
 //                System.out.println("run!");
                     blockb.setType(matToRecover);
                     System.out.println(matToRecover);
-                    if (matToRecover.toString().contains("WALL_SIGN")) {
+                    if (matToRecover.toString().contains("DARK_OAK_WALL_SIGN")) {
 
                         BlockState newState = e.getBlock().getState();
                         Sign newSign = (Sign) newState;
-                        newSign.setLine(0, "Transaction Data:");
-                        newSign.setLine(1, transactionData);
+                        newSign.setLine(0, blockIndex);
+                        newSign.setLine(1, nonce);
+                        newSign.setLine(2, prevHash);
+                        newSign.setLine(3, date);
 
                         newSign.update();
-                        System.out.println(newSign.getLine(0));
 
 
                     }
@@ -147,14 +130,14 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
 //            String tempData = sign.getLine(1);
             Player player = e.getPlayer();
             e.getPlayer().sendMessage(ChatColor.BLUE + "...Decrypting Messages in this Block...");
-            String data = sign.getLine(1);
+            String data = ChatColor.stripColor(sign.getLine(1));
             player.sendMessage(ChatColor.YELLOW + "Data: " + data);
             try {
                 byte[] decodedBytes = Base64.getDecoder().decode(data);
                 String decodedString = new String(decodedBytes);
 
                 if (decodedString.contains(player.getName())) {
-                    sign.setLine(1, decodedString);
+                    sign.setLine(1, ChatColor.GREEN + decodedString);
                     blockMat = Material.BIRCH_WALL_SIGN;
                     player.sendMessage(ChatColor.GREEN + "Decrypted Message: " + decodedString);
                 } else {
@@ -167,6 +150,7 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
                 System.out.println(ex);
                 player.sendMessage(ChatColor.RED + "This block does not contain an encrypted message or transaction!");
             }
+            final String topLine = sign.getLine(0);
             final String transactionData = sign.getLine(1);
             final Material matToRecover = blockMat;
 
@@ -181,11 +165,11 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
 
                         BlockState newState = e.getBlock().getState();
                         Sign newSign = (Sign) newState;
-                        newSign.setLine(0, "Transaction Data:");
+                        newSign.setLine(0, topLine);
                         newSign.setLine(1, transactionData);
 
                         newSign.update();
-                        System.out.println(newSign.getLine(0));
+
 
 
                     }

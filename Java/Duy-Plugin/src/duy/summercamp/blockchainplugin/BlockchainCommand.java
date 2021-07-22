@@ -101,22 +101,22 @@ public class BlockchainCommand implements CommandExecutor {
 
                         Location newSpawnLocation = playerLoc.add(startingX, 0, 0);
                         player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum+1,1)).setType(Material.DIAMOND_BLOCK);
-                        player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum+1,0)).setType(Material.OAK_SIGN);
+                        player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum+1,0)).setType(Material.DARK_OAK_WALL_SIGN);
 
 
                         Sign topSign= (Sign) player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum+1,0)).getState();
 
-                        topSign.setLine(0, "Block ID: " + String.valueOf(block.block_number));
-                        topSign.setLine(1, "Nonce: " + String.valueOf(block.nonce));
-                        topSign.setLine(2, "Prev:" + String.valueOf(block.previous_hash));
-                        topSign.setLine(3, "Date:" + transactionDate);
+                        topSign.setLine(0, ChatColor.YELLOW + "Block ID: " + String.valueOf(block.block_number));
+                        topSign.setLine(1, ChatColor.YELLOW + "Nonce: " + String.valueOf(block.nonce));
+                        topSign.setLine(2, ChatColor.YELLOW + "Prev:" + String.valueOf(block.previous_hash));
+                        topSign.setLine(3, ChatColor.YELLOW + "Date:" + transactionDate);
 
                         for (Transaction transaction : block.transactions) {
                             player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum,1)).setType(Material.DIAMOND_BLOCK);
                             player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum,0)).setType(Material.WARPED_WALL_SIGN);
                             Sign bottomSign= (Sign) player.getWorld().getBlockAt(player.getLocation().add(startingX,transactionNum,0)).getState();
-                            bottomSign.setLine(0, "Transaction Data:" );
-                            bottomSign.setLine(1,  transaction.value);
+                            bottomSign.setLine(0, ChatColor.WHITE + "Transaction Data:" );
+                            bottomSign.setLine(1, ChatColor.WHITE + transaction.value);
 
                             Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "\n" + transaction.value);
                             bottomSign.update();

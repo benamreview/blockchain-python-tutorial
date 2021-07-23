@@ -4,3 +4,5 @@ Java/Duy-Plugin/.idea/vcs.xml
 
 Java/Server/logs/latest.log
 *.log.gz
+deepfake_server/deepfake-detection-model.h5
+deepfake_server/flask_server/deepfake-detection-model.h5

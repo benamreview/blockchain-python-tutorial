@@ -1,4 +1,4 @@
-name: Blockchain
+name: Addons
 version: 1.0.0
 author: Duy Ho
 main: duy.summercamp.blockchainplugin.BlockChainPlugin
@@ -6,6 +6,12 @@ api-version: 1.17
 commands:
   blockchain:
     description: Spawns a blockchain
+    usage: /<command>
   blocktalk:
     description: Messages another player with Blockchain
     aliases: [blockchat]
+    usage: /<command>
+  predict_deepfake:
+    description: Predicts whether an image is fake or not
+    aliases: [ predict ]
+    usage: /<command>

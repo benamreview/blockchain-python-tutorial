@@ -9,7 +9,7 @@ import sys
 from PIL import Image
 from os.path import dirname, abspath
 import json
-import tensorflow as tf
+
 # import dlib
 import cv2
 import os
@@ -65,4 +65,4 @@ def index():
 
 if __name__ == "__main__":
     application.debug = True
-    application.run(host='0.0.0.0', port=8001)
+    application.run(host='0.0.0.0', port=4711)

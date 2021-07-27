@@ -49,8 +49,8 @@ public class DeepfakeCommand implements CommandExecutor {
 
         if (commandSender instanceof Player) {
             Player p = Bukkit.getPlayer(commandSender.getName());
-
-            String url = "http://127.0.0.1:8001/deepfake/predict";
+            String port = "8888";
+            String url = "http://127.0.0.1:" + port + "/deepfake/predict";
 
             String testImageName = args[0];
             if (testImageName == null) {

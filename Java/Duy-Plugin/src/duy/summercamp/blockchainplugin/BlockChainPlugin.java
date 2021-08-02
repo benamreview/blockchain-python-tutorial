@@ -64,7 +64,9 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
         getCommand("blockchain").setExecutor(new BlockchainCommand());
         getCommand("blocktalk").setExecutor(new BlockChat());
 //        getCommand("predict").setExecutor(new DeepfakeCommand(this.getDataFolder().getAbsolutePath() + "/../"));
-        getCommand("predict").setExecutor(new DeepfakeCommand("/home/alb_a7med/server/plugins"));
+        getCommand("predict").setExecutor(new DeepfakeCommand("plugins/"));
+
+//        getCommand("predict").setExecutor(new DeepfakeCommand("/home/alb_a7med/server/plugins"));
 
 
         BlockListener blockListener = new BlockListener();

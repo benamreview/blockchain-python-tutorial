@@ -63,7 +63,9 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
 //        }
         getCommand("blockchain").setExecutor(new BlockchainCommand());
         getCommand("blocktalk").setExecutor(new BlockChat());
-        getCommand("predict").setExecutor(new DeepfakeCommand(this.getDataFolder().getAbsolutePath() + "/../"));
+//        getCommand("predict").setExecutor(new DeepfakeCommand(this.getDataFolder().getAbsolutePath() + "/../"));
+        getCommand("predict").setExecutor(new DeepfakeCommand("/home/alb_a7med/server/plugins"));
+
 
         BlockListener blockListener = new BlockListener();
 
@@ -138,6 +140,8 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
                 byte[] decodedBytes = Base64.getDecoder().decode(data);
                 String decodedString = new String(decodedBytes);
 
+                System.out.println(player.getName());
+                System.out.println(decodedString);
                 if (decodedString.contains(player.getName())) {
                     sign.setLine(1, ChatColor.GREEN + decodedString);
                     blockMat = Material.BIRCH_WALL_SIGN;

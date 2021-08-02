@@ -56,8 +56,8 @@ def allowed_file(filename):
 
 
 #application = Flask(__name__)
-
-addr = 'http://localhost:8001'
+port = 8888
+addr = 'http://localhost:{}'.format(port)
 test_url = addr + '/api/test'
 test_url = addr + '/deepfake/predict'
 
@@ -175,4 +175,4 @@ def test():
 
 if __name__ == "__main__":
     application.debug = True
-    application.run(host='0.0.0.0', port=8001)
+    application.run(host='0.0.0.0', port=port)

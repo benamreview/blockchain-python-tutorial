@@ -1,7 +1,19 @@
 {
+  "minecraft:nether/get_wither_skull": {
+    "criteria": {
+      "wither_skull": "2021-07-28 01:39:12 -0500"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/diamond_block": {
     "criteria": {
       "has_diamond": "2021-07-19 16:45:12 -0500"
+    },
+    "done": true
+  },
+  "minecraft:nether/summon_wither": {
+    "criteria": {
+      "summoned": "2021-07-27 16:53:03 -0500"
     },
     "done": true
   },
@@ -51,6 +63,7 @@
     "criteria": {
       "minecraft:forest": "2021-07-16 02:17:20 -0500",
       "minecraft:mountains": "2021-07-20 17:11:39 -0500",
+      "minecraft:snowy_tundra": "2021-07-29 12:15:35 -0500",
       "minecraft:river": "2021-07-16 03:25:03 -0500"
     },
     "done": false
@@ -97,6 +110,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/misc/skull_banner_pattern": {
+    "criteria": {
+      "has_wither_skeleton_skull": "2021-07-28 01:39:12 -0500"
+    },
+    "done": true
+  },
   "minecraft:story/mine_diamond": {
     "criteria": {
       "diamond": "2021-07-19 16:45:12 -0500"
@@ -127,9 +146,21 @@
     },
     "done": true
   },
+  "minecraft:recipes/decorations/soul_campfire": {
+    "criteria": {
+      "has_soul_sand": "2021-07-28 01:38:51 -0500"
+    },
+    "done": true
+  },
   "minecraft:recipes/combat/diamond_sword": {
     "criteria": {
       "has_diamond": "2021-07-19 16:45:12 -0500"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/soul_torch": {
+    "criteria": {
+      "has_soul_sand": "2021-07-28 01:38:51 -0500"
     },
     "done": true
   },

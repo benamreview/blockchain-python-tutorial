@@ -43,15 +43,19 @@ public class DeepfakeCommand implements CommandExecutor {
     String imageDir = null;
     public DeepfakeCommand(String pluginDir){
         imageDir = pluginDir + "/Images/";
+
     }
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String alias, String[] args) {
 
         if (commandSender instanceof Player) {
             Player p = Bukkit.getPlayer(commandSender.getName());
-            String port = "8888";
-            String url = "http://127.0.0.1:" + port + "/deepfake/predict";
+//            String port = "8123";
+            String port = "8123";
 
+            String url = "http://0.0.0.0:" + port + "/deepfake/predict";
+            System.out.println(url);
+            System.out.println(imageDir);
             String testImageName = args[0];
             if (testImageName == null) {
                 p.sendMessage(ChatColor.RED + "Please enter a valid image name!");

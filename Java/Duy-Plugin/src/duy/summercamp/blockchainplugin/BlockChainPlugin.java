@@ -86,7 +86,7 @@ public class BlockChainPlugin extends JavaPlugin implements Listener {
     }
     @EventHandler
     public void onPlayerBreak(BlockBreakEvent e) {
-        System.out.println("Block Break!");
+//        System.out.println("Block Break!");
 
         Location blockl = e.getBlock().getLocation();
         Material blockMat = e.getBlock().getType();
